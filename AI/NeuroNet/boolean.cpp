@@ -21,7 +21,7 @@ bool boolean::OR(int x1, int x2,
 bool boolean::NOT(int x,
          const float w,
          const float T) {
-//    float S = x*w;
+//    float S = x_*w;
 //    return S >= T;
     return !x;
 }

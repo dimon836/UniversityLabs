@@ -1,7 +1,6 @@
 import annotations.SomeAnnotation;
 
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 public class Polynomial {
     private final ArrayList<Integer> coefficients;
@@ -15,10 +14,12 @@ public class Polynomial {
     }
 
     public float calculation (int x) {
-        if(isEmpty() || x == 0) {
-            return 0;
+        // TODO: 24.05.2021
+        // in if() statement was isEmpty() check
+        if(x == 0) {
+            return 0F;
         }
-        int sum = 0;
+        float sum = 0;
         int i = 1;
         for(int num: getCoefficients()) {
             sum += num * Math.pow(x, i);
@@ -31,6 +32,17 @@ public class Polynomial {
         return coefficients;
     }
 
+    static String power(Integer x) {
+        String s = Integer.toString(x);
+        StringBuilder retS = new StringBuilder();
+        String unicodeCharactersOfPower = "\u2070" + "\u00B9" + "\u00B2" + "\u00B3" + "\u2074" + "\u2075" + "\u2076" +
+                "\u2077" + "\u2078" + "\u2079";
+        for (int i = 0; i < s.length(); i++) {
+            retS.append(unicodeCharactersOfPower.charAt(Character.getNumericValue(s.charAt(i))));
+        }
+        return retS.toString();
+    }
+
     @SomeAnnotation
     public boolean isEmpty(){
         return this.coefficients.size() == 0;
@@ -38,8 +50,10 @@ public class Polynomial {
 
     @Override
     public String toString() {
-        return "Polynomial{" +
-                "coefficients=" + coefficients.stream().limit(coefficients.size()).collect(Collectors.toList()) +
-                "}";
+        StringBuilder retS = new StringBuilder("P(x) = " + coefficients.get(0) + "x" + power(coefficients.get(0)));
+        for (int i = 1; i < coefficients.size(); i++) {
+            retS.append(" + ").append(coefficients.get(i)).append("x").append(power(coefficients.get(i)));
+        }
+        return retS.toString();
     }
 }

@@ -1,20 +1,32 @@
 import java.util.stream.Collectors;
 
-public class Division extends Polynomial implements DivisionInterface {
+public class MathematicalDoingsOfPolynomials extends Polynomial implements DivisionInterface {
     private Polynomial numerator;
     private Polynomial denominator;
 
-    Division (Polynomial a, Polynomial b) {
+    MathematicalDoingsOfPolynomials(Polynomial a, Polynomial b) {
         super();
         numerator = a;
         denominator = b;
     }
 
-    public float calculation(int x1, int x2) {
-        if (denominator.calculation(x2) == 0) {
+    public float addition(int numeratorX1, int denominatorX2) {
+        return numerator.calculation(numeratorX1) + denominator.calculation(denominatorX2);
+    }
+
+    public float subtraction(int numeratorX1, int denominatorX2) {
+        return numerator.calculation(numeratorX1) - denominator.calculation(denominatorX2);
+    }
+
+    public float multiplication(int numeratorX1, int denominatorX2) {
+        return numerator.calculation(numeratorX1) * denominator.calculation(denominatorX2);
+    }
+
+    public float division(int numeratorX1, int denominatorX2) {
+        if (denominator.calculation(denominatorX2) == 0) {
             throw new ArithmeticException("Divide by zero");
         }
-        return numerator.calculation(x1) / denominator.calculation(x2);
+        return numerator.calculation(numeratorX1) / denominator.calculation(denominatorX2);
     }
 
     @Override

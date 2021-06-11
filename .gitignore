@@ -3,3 +3,4 @@
 *venv
 *out
 *.docx
+*cmake-build-debug-coverage

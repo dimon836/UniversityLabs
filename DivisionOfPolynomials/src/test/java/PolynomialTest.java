@@ -1,3 +1,5 @@
+import main.Polynomial;
+import mvc.Controller;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -5,8 +7,6 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.util.ArrayList;
-
-import static org.mockito.Mockito.*;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(Polynomial.class)
@@ -37,22 +37,24 @@ class PolynomialTest {
 
     @Test
     void isEmpty_CheckingEmptyOrNotPolynomialArray_TrueOrFalse_MockitoCorrectTest() {
-        View view = mock(View.class);
-        Polynomial polynomial = mock(Polynomial.class);
+//        mvc.View view = mock(mvc.View.class);
+        Controller check_controller = new Controller();
+//        check_controller.input();
+//        view = check_controller.controller_view();
         numerator.add(1); numerator.add(2); numerator.add(3);
-        Polynomial somePolynomial = new Polynomial(numerator);
-        String s = somePolynomial.toString();
-        // need input 3
-        when(view.input(polynomial).toString()).thenReturn(s);
-        verify(view);
+        Polynomial polynomial = new Polynomial(numerator);
+        String s = polynomial.toString();
+        Assertions.assertEquals(s, check_controller.input(3).toString());
+//        when(check_controller.input(any()).toString()).thenReturn(s);
+//        verify(check_controller);
     }
 
     @Test
     void isEmpty_CheckingEmptyOrNotPolynomialArray_TrueOrFalse_MockitoIncorrectTest() {
-        View view = mock(View.class);
-        Polynomial polynomial = mock(Polynomial.class);
-        when(view.input(polynomial).toString()).thenReturn("1");
-
-        verify(view);
+        Controller controller = new Controller();
+        Polynomial polynomial = controller.input(4);
+        Assertions.assertNotEquals(polynomial.toString(), "tututu");
+//        when(controller.input(anyInt()).toString()).thenReturn("1");
+//        verify(controller);
     }
 }

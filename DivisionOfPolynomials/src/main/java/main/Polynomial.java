@@ -1,3 +1,5 @@
+package main;
+
 import annotations.SomeAnnotation;
 
 import java.util.ArrayList;
@@ -5,7 +7,7 @@ import java.util.ArrayList;
 public class Polynomial {
     private final ArrayList<Integer> coefficients;
 
-    Polynomial (ArrayList<Integer> arr) {
+    public Polynomial (ArrayList<Integer> arr) {
         coefficients = arr;
     }
 

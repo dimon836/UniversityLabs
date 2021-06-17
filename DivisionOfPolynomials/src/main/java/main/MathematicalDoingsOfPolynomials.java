@@ -1,10 +1,14 @@
+package main;
+
+import interfaces.DivisionInterface;
+
 import java.util.stream.Collectors;
 
 public class MathematicalDoingsOfPolynomials extends Polynomial implements DivisionInterface {
     private Polynomial numerator;
     private Polynomial denominator;
 
-    MathematicalDoingsOfPolynomials(Polynomial a, Polynomial b) {
+    public MathematicalDoingsOfPolynomials(Polynomial a, Polynomial b) {
         super();
         numerator = a;
         denominator = b;

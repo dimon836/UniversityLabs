@@ -1,5 +1,7 @@
-import java.util.ArrayList;
+package main;
 
+import java.util.ArrayList;
+import mvc.*;
 /**
  * <p>
  * 1. Створити базовий і похідний класи згідно до варіанту індивідуального завдання.
@@ -41,59 +43,17 @@ public class Main {
         view.view();
         view.view("n"); // numerator
 
-        /*
-        System.out.println(mathematicalDoingsOfPolynomials.toString());
-        System.out.println(polynomialDenominator.toString());
+        System.out.println("******************CONTROLLER INPUT CHECK******************");
+        Polynomial input_numerator = new Polynomial();
+        Polynomial input_denominator = new Polynomial();
+        Controller check_controller = new Controller(input_numerator, input_denominator);
+        check_controller.input();
+        view = check_controller.controller_view();
+        view.view();
 
-        System.out.println("------------Task 1.2----------------");
-        System.out.println();
+        Polynomial new_pol;
+        new_pol = check_controller.input(15);
+        System.out.println(new_pol);
 
-        Class<?> clazz = polynomialDenominator.getClass();
-        for (Method method: clazz.getMethods()){
-            if (method.isAnnotationPresent(SomeAnnotation.class)) {
-                try {
-                    System.out.println("SomeAnnotation (" + method.getName() + "): "
-                            + method.invoke(polynomialDenominator));
-                } catch (IllegalAccessException | InvocationTargetException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        System.out.println("------------Task 1.3----------------");
-        System.out.println("Add task 4");
-
-        // 4. Список полів з іменами, типами таи модифікаторами доступу.
-        System.out.println(" Class name: " + clazz.getName());
-        Field[] fid = clazz.getDeclaredFields();
-        for (Field i : fid) {
-            System.out.println(" " + i);
-        }
-
-        System.out.println("-------------------------------------");
-        System.out.println("Add task 9");
-
-        // 9. Список анотацій класу
-        Method [] m = clazz.getMethods();
-        for (Method i: m) {
-            Annotation anno = i.getAnnotation(SomeAnnotation.class);
-            if(anno != null) {
-                System.out.println(" Method name: " + i.getName() + "\n Annotation: " + anno);
-            }
-        }
-
-        System.out.println("------------Task 1.4----------------");
-        System.out.println();
-
-        DivisionInterface proxy = (DivisionInterface) SomeProxy.newProxyInstance(mathematicalDoingsOfPolynomials);
-        Polynomial obj = proxy.getDenominator();
-        System.out.println(obj.toString());
-        try {
-            proxy.setDenominator(polynomialNumerator);
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-*/
     }
 }

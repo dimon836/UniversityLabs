@@ -1,3 +1,7 @@
+package interfaces;
+
+import main.Polynomial;
+
 public interface DivisionInterface {
     Polynomial getDenominator();
     Polynomial getNumerator();

@@ -1,3 +1,5 @@
+import main.MathematicalDoingsOfPolynomials;
+import main.Polynomial;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;

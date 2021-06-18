@@ -3,6 +3,7 @@ package mvc;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import Singleton.Singleton;
 import main.MathematicalDoingsOfPolynomials;
 import main.Polynomial;
 
@@ -65,9 +66,10 @@ public class Controller extends Model {
         }
         numeratorObj = new Polynomial(numerator);
         denominatorObj = new Polynomial(denominator);
+        Singleton.getSingleton().addPolynomial(numeratorObj.toString());
+        Singleton.getSingleton().addPolynomial(denominatorObj.toString());
 //        createModel();
     }
-
     //TODO
     // create test for rewriting polynomial
     // if polynomial isn't empty, ask if you wanna rewrite it

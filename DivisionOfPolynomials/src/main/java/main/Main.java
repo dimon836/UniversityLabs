@@ -1,6 +1,10 @@
 package main;
 
 import java.util.ArrayList;
+
+import Command.Command;
+import Command.InputCommand;
+import Singleton.Singleton;
 import mvc.*;
 /**
  * <p>
@@ -39,21 +43,37 @@ public class Main {
                                         new MathematicalDoingsOfPolynomials(polynomialNumerator, polynomialDenominator);
 //        System.out.println(polynomialDenominator);
 
-        View view = new View(polynomialNumerator, polynomialDenominator);
+        // Lab3 starts
+
+//        View view = new View(polynomialNumerator, polynomialDenominator);
+//        view.view();
+//        view.view("n"); // numerator
+//
+//        System.out.println("******************CONTROLLER INPUT CHECK******************");
+//        Polynomial input_numerator = new Polynomial();
+//        Polynomial input_denominator = new Polynomial();
+//        Controller check_controller = new Controller(input_numerator, input_denominator);
+//        check_controller.input();
+//        view = check_controller.controller_view();
+//        view.view();
+//
+//        Polynomial new_pol;
+//        new_pol = check_controller.input(15);
+//        System.out.println(new_pol);
+
+        // Lab3 Ends
+        // Lab4 Starts
+        // Command pattern +
+        // Singleton pattern +
+        //TODO
+        // add 3 more patterns
+
+        Controller controller = new Controller();
+        User user = new User(new InputCommand(controller));
+        user.inputRecord();
+        View view = controller.controller_view();
         view.view();
-        view.view("n"); // numerator
 
-        System.out.println("******************CONTROLLER INPUT CHECK******************");
-        Polynomial input_numerator = new Polynomial();
-        Polynomial input_denominator = new Polynomial();
-        Controller check_controller = new Controller(input_numerator, input_denominator);
-        check_controller.input();
-        view = check_controller.controller_view();
-        view.view();
-
-        Polynomial new_pol;
-        new_pol = check_controller.input(15);
-        System.out.println(new_pol);
-
+        Singleton.getSingleton().showAllPolynomials();
     }
 }

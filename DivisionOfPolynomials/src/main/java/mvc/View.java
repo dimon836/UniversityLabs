@@ -27,8 +27,6 @@ public class View extends Controller {
         System.out.println(" IN VIEW CLASS ");
         System.out.println(numeratorObj.toString());
         System.out.println(denominatorObj.toString());
-        if (getModelName() != null)
-            System.out.println(getModelName());
         System.out.println(" VIEW CLASS ENDS ");
     }
 }

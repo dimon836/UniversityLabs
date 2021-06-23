@@ -9,6 +9,14 @@ public class Model {
     protected MathematicalDoingsOfPolynomials model;
     public String model_name;
 
+    public Polynomial getNumeratorObj() {
+        return numeratorObj;
+    }
+
+    public Polynomial getDenominatorObj() {
+        return denominatorObj;
+    }
+
     public String getModelName() {
         return model_name;
     }

@@ -70,6 +70,16 @@ public class Controller extends Model {
         Singleton.getSingleton().addPolynomial(denominatorObj.toString());
 //        createModel();
     }
+
+    @Override
+    public Polynomial getNumeratorObj() {
+        return numeratorObj;
+    }
+
+    @Override
+    public Polynomial getDenominatorObj() {
+        return denominatorObj;
+    }
     //TODO
     // create test for rewriting polynomial
     // if polynomial isn't empty, ask if you wanna rewrite it

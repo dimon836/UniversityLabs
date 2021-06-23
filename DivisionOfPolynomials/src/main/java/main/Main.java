@@ -2,10 +2,13 @@ package main;
 
 import java.util.ArrayList;
 
-import Command.Command;
+import ArithmeticalOperations.*;
 import Command.InputCommand;
-import Singleton.Singleton;
+import Proxy.*;
 import mvc.*;
+import Singleton.Singleton;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 /**
  * <p>
  * 1. Створити базовий і похідний класи згідно до варіанту індивідуального завдання.
@@ -65,15 +68,44 @@ public class Main {
         // Lab4 Starts
         // Command pattern +
         // Singleton pattern +
-        //TODO
-        // add 3 more patterns
+        // Proxy pattern +
 
-        Controller controller = new Controller();
-        User user = new User(new InputCommand(controller));
-        user.inputRecord();
-        View view = controller.controller_view();
-        view.view();
+//        Controller controller = new Controller();
+//        User user = new User(new InputCommand(controller));
+//        user.inputRecord();
+//        View view = controller.controller_view();
+//        view.view();
+//        Singleton.getSingleton().showAllPolynomials();
+//        Project project = new ProxyProject("https://github.com/dimon836/UniversityLabs/tree/main/DivisionOfPolynomials");
+//        project.run();
+//        /// Lab4 Ends
+//
+//
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
+                "appConf.xml"
+        );
+        Calculator calculator = context.getBean("calculator", Calculator.class);
+        System.out.println(calculator);
 
-        Singleton.getSingleton().showAllPolynomials();
+
+//        ArithmeticalOperations arithmeticalOperations =
+//                context.getBean("arithmeticalOperations", ArithmeticalOperations.class);
+//        System.out.println(arithmeticalOperations.doOperation());
+
+
+//        Operation operation = context.getBean("add", Operation.class);
+//        ArithmeticalOperations arithmeticalOperations = new ArithmeticalOperations(operation);
+//        arithmeticalOperations.doOperation();
+//
+//        Operation operation2 = context.getBean("division", Operation.class);
+//        ArithmeticalOperations arithmeticalOperations2 = new ArithmeticalOperations(operation2);
+//        arithmeticalOperations2.doOperation();
+
+
+//        Operation operation = context.getBean("divisionBean", Operation.class);
+//        ArithmeticalOperations arithmeticalOperations = new ArithmeticalOperations(operation);
+//        System.out.println(arithmeticalOperations.doOperation());
+
+        context.close();
     }
 }

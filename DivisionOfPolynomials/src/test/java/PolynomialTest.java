@@ -8,6 +8,10 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.util.ArrayList;
 
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(Polynomial.class)
 class PolynomialTest {
@@ -53,8 +57,8 @@ class PolynomialTest {
     void isEmpty_CheckingEmptyOrNotPolynomialArray_TrueOrFalse_MockitoIncorrectTest() {
         Controller controller = new Controller();
         Polynomial polynomial = controller.input(4);
-        Assertions.assertNotEquals(polynomial.toString(), "tututu");
-//        when(controller.input(anyInt()).toString()).thenReturn("1");
-//        verify(controller);
+//        Assertions.assertNotEquals(polynomial.toString(), "tututu");
+        when(controller.input(anyInt()).toString()).thenReturn("1");
+        verify(controller);
     }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../videos.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+import '../models/videos.dart';
 
 class VideoPage extends StatelessWidget {
   static const TextStyle BottomInfoStyle = TextStyle(
@@ -12,38 +14,26 @@ class VideoPage extends StatelessWidget {
 
   final String id;
 
-  late final String _previewImage;
-  late final String _description;
-  late final String _length;
+  final VoidCallback incrementSubscribeCounter;
 
-  late final String _channelAvatarImage;
-  late final String _channelName;
-  late final String _views;
-  late final String _uploadedAt;
-
-  late final String _likes;
-  late final String _dislikes;
-  late final String _subscribers;
-
-  late final String _specification;
-
-  VideoPage({required this.id}) {
-    Map video = getVideoById(this.id);
-    this._previewImage = video['previewImage'];
-    this._description = video['description'];
-    this._length = video['length'];
-    this._channelAvatarImage = video['channelAvatarImage'];
-    this._channelName = video['channelName'];
-    this._views = video['views'];
-    this._uploadedAt = video['uploadedAt'];
-    this._likes = video['likes'];
-    this._dislikes = video['dislikes'];
-    this._subscribers = video['subscribers'];
-    this._specification = video['specification'];
-  }
+  VideoPage({required this.id, required this.incrementSubscribeCounter});
 
   @override
   Widget build(BuildContext context) {
+    final videos = context.watch<Videos>();
+    final video = videos.getVideoById(this.id);
+    final _previewImage = video['previewImage'];
+    final _description = video['description'];
+    final _channelAvatarImage = video['channelAvatarImage'];
+    final _channelName = video['channelName'];
+    final _views = video['views'];
+    final _uploadedAt = video['uploadedAt'];
+    final _likes = video['likes'];
+    final _dislikes = video['dislikes'];
+    final _subscribers = video['subscribers'];
+    final _isLiked = video['isLiked'];
+    final _specification = video['specification'];
+
     return Hero(
       tag: this.id,
       child: Material(
@@ -58,7 +48,7 @@ class VideoPage extends StatelessWidget {
                 margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage(this._previewImage),
+                    image: AssetImage(_previewImage),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -93,7 +83,7 @@ class VideoPage extends StatelessWidget {
                                 child: Container(
                                   margin: EdgeInsets.only(bottom: 10),
                                   child: Text(
-                                    this._description,
+                                    _description,
                                     style: TextStyle(fontSize: 18),
                                     maxLines: 2,
                                     softWrap: true,
@@ -107,7 +97,7 @@ class VideoPage extends StatelessWidget {
                             children: [
                               Container(
                                 child: Text(
-                                  this._views,
+                                  "$_views views",
                                   style: BottomInfoStyle,
                                 ),
                               ),
@@ -122,7 +112,7 @@ class VideoPage extends StatelessWidget {
                               ),
                               Container(
                                 child: Text(
-                                  this._uploadedAt,
+                                  _uploadedAt,
                                   style: BottomInfoStyle,
                                 ),
                               ),
@@ -143,28 +133,32 @@ class VideoPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Provider.of<Videos>(context, listen: false).like(this.id);
+                      },
                       child: Column(
                         children: [
-                          Icon(Icons.thumb_up_outlined),
+                          Icon(_isLiked == 'liked' ? Icons.thumb_up : Icons.thumb_up_outlined),
                           Divider(
                             thickness: 0,
                             height: 3,
                           ),
-                          Text(this._likes),
+                          Text(NumberFormat.compact().format(_likes)),
                         ],
                       ),
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Provider.of<Videos>(context, listen: false).dislike(this.id);
+                      },
                       child: Column(
                         children: [
-                          Icon(Icons.thumb_down_outlined),
+                          Icon(_isLiked == 'disliked' ? Icons.thumb_down : Icons.thumb_down_outlined),
                           Divider(
                             thickness: 0,
                             height: 3,
                           ),
-                          Text(this._dislikes),
+                          Text(NumberFormat.compact().format(_dislikes)),
                         ],
                       ),
                     ),
@@ -220,7 +214,7 @@ class VideoPage extends StatelessWidget {
                               margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
                               child: CircleAvatar(
                                 backgroundImage:
-                                    AssetImage(this._channelAvatarImage),
+                                    AssetImage(_channelAvatarImage),
                               ),
                             ),
                             Container(
@@ -234,7 +228,7 @@ class VideoPage extends StatelessWidget {
                                       Flexible(
                                         child: Container(
                                           child: Text(
-                                            this._channelName,
+                                            _channelName,
                                             style: TextStyle(fontSize: 14),
                                             maxLines: 1,
                                             softWrap: false,
@@ -250,7 +244,7 @@ class VideoPage extends StatelessWidget {
                                       Flexible(
                                         child: Container(
                                           child: Text(
-                                            '${this._subscribers} подписчиков',
+                                            '${_subscribers} подписчиков',
                                             style: TextStyle(
                                               fontSize: 12,
                                               color: Colors.grey,
@@ -272,7 +266,9 @@ class VideoPage extends StatelessWidget {
                     ),
 
                     TextButton(
-                      onPressed: () {  },
+                      onPressed: () {
+                        this.incrementSubscribeCounter();
+                      },
                       child: Container(
                         padding: EdgeInsets.all(8.0),
                         child: Text(
@@ -303,7 +299,7 @@ class VideoPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '${this._specification}',
+                      '${_specification}',
                       style: TextStyle(
                         fontSize: 12,
                         color: Colors.white,

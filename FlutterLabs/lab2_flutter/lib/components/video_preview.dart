@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:lab2_flutter/pages/video_page.dart';
 
 class VideoPreview extends StatelessWidget {
@@ -9,13 +10,15 @@ class VideoPreview extends StatelessWidget {
     fontFamily: 'Roboto',
   );
 
+  final VoidCallback incrementSubscribeCounter;
+
   final String _previewImage;
   final String _description;
   final String _length;
 
   final String _channelAvatarImage;
   final String _channelName;
-  final String _views;
+  final int _views;
   final String _uploadedAt;
 
   final String id;
@@ -28,7 +31,8 @@ class VideoPreview extends StatelessWidget {
       required channelAvatarImage,
       required channelName,
       required views,
-      required shortUploadedAt})
+      required shortUploadedAt,
+      required this.incrementSubscribeCounter})
       : this._previewImage = previewImage,
         this._description = description,
         this._length = length,
@@ -49,6 +53,7 @@ class VideoPreview extends StatelessWidget {
               return Scaffold(
                 body: VideoPage(
                     id: this.id,
+                  incrementSubscribeCounter: this.incrementSubscribeCounter
                 ),
               );
             }),
@@ -133,7 +138,7 @@ class VideoPreview extends StatelessWidget {
                             ),
                             Container(
                               child: Text(
-                                this._views,
+                                "${NumberFormat.compact().format(this._views)} views",
                                 style: BottomInfoStyle,
                               ),
                             ),

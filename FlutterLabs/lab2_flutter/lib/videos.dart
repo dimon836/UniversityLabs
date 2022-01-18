@@ -7,12 +7,12 @@ List videos = [
     'length': '1:09:16',
     'channelAvatarImage': 'resources/images/channels/serhiy_tytenko.jpg',
     'channelName': 'Сергій Титенко | Web & Mobile Development',
-    'views': '562 просмотра',
+    'views': 562,
     'shortUploadedAt': '2 года назад',
     'uploadedAt': '21 сент. 2019 г.',
-    'likes': '8',
-    'dislikes': '0',
-    'subscribers': '337',
+    'likes': 8,
+    'dislikes': 0,
+    'subscribers': 337,
     'specification': '''
     Завдання на практичну роботу:
     1) Побудувати ієрархію віджетів. А саме: Container, Column, Row, Expanded
@@ -32,12 +32,12 @@ List videos = [
     'length': '46:54  ',
     'channelAvatarImage': 'resources/images/channels/serhiy_tytenko.jpg',
     'channelName': 'Сергій Титенко | Web & Mobile Development',
-    'views': '406 просмотра',
+    'views': 406,
     'shortUploadedAt': '2 года назад',
     'uploadedAt': '25 нояб. 2019 г.',
-    'likes': '9',
-    'dislikes': '0',
-    'subscribers': '337',
+    'likes': 9,
+    'dislikes': 0,
+    'subscribers': 337,
     'specification': '''
     Завдання на практичну роботу:
     1) Побудувати Scaffold віджет, Drawer, FloatingButton, BottomNavigationBar
@@ -56,12 +56,12 @@ List videos = [
     'length': '25:44',
     'channelAvatarImage': 'resources/images/channels/serhiy_tytenko.jpg',
     'channelName': 'Сергій Титенко | Web & Mobile Development',
-    'views': '173 просмотра',
+    'views': 173,
     'shortUploadedAt': '1 год назад',
     'uploadedAt': '20 февр. 2020 г.',
-    'likes': '7',
-    'dislikes': '0',
-    'subscribers': '337',
+    'likes': 7,
+    'dislikes': 0,
+    'subscribers': 337,
     'specification': '''
     Основи веб-розробки.
 
@@ -78,10 +78,6 @@ List videos = [
     Кафедра АПЕПС. ТЕФ.'''
   }
 ];
-
-Map getVideoById(dynamic id) {
-  return videos.firstWhere((element) => element['id'] == id);
-}
 
 List getVideos() {
   return videos;

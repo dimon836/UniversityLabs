@@ -2,15 +2,24 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rainbow_container/rainbow_container.dart';
+import 'package:provider/provider.dart';
+import './pages/subscriptions_page.dart';
+import './models/videos.dart';
 import './pages/main_page.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => Videos(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Provider.of<Videos>(context, listen: false).update();
     return MaterialApp(
       title: 'MyTube - YouTube Clone',
       theme: ThemeData(
@@ -57,6 +66,7 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   int _selectedIndex = 0;
+  int _totalSubscribeCount = 0;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   void _openEndDrawer() {
@@ -73,11 +83,20 @@ class _AppState extends State<App> {
     });
   }
 
-  static final _indexToPageMap = [
-    MainPage(),
+  void incrementTotalSubsCount() {
+    setState(() {
+      _totalSubscribeCount++;
+    });
+  }
+
+  List get indexToPageMap => [
+    MainPage(incrementSubscribeCounter: incrementTotalSubsCount),
     Text('Не разработано'),
     Text('Не разработано'),
-    Text('Не разработано'),
+    SubscriptionsPage(
+        totalSubscribeClicks: _totalSubscribeCount,
+        onClick: incrementTotalSubsCount
+    ),
     Text('Не разработано'),
   ];
 
@@ -293,15 +312,7 @@ class _AppState extends State<App> {
       ),
       endDrawerEnableOpenDragGesture: false,
 
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     // Add your onPressed code here!
-      //   },
-      //   child: const Icon(Icons.navigation),
-      //   backgroundColor: Colors.grey,
-      // ),
-
-      body: _indexToPageMap.elementAt(_selectedIndex),
+      body: indexToPageMap.elementAt(_selectedIndex),
     );
   }
 }

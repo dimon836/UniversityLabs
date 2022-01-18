@@ -248,7 +248,6 @@ class _AppState extends State<App> {
               size: 26,
             ),
             label: '',
-
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.subscriptions_outlined),

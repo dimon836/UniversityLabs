@@ -60,7 +60,6 @@ class VideoPreview extends StatelessWidget {
             Container(
               width: double.infinity,
               height: 200,
-              // TODO: could be done with MediaQuery.of(context).size.height / 3
               margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
               decoration: BoxDecoration(
                 image: DecorationImage(

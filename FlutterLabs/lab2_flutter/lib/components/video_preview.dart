@@ -47,8 +47,8 @@ class VideoPreview extends StatelessWidget {
     return Hero(
       tag: this.id,
       child: RawMaterialButton(
-        onPressed: () {
-          Navigator.of(context).push(
+        onPressed: () async {
+          final res = await Navigator.of(context).push(
             MaterialPageRoute<void>(builder: (BuildContext context) {
               return Scaffold(
                 body: VideoPage(
@@ -58,6 +58,7 @@ class VideoPreview extends StatelessWidget {
               );
             }),
           );
+          print('returned from video: ${res as String}');
         },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

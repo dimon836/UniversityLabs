@@ -59,7 +59,7 @@ class VideoPage extends StatelessWidget {
                       left: 10,
                       child: IconButton(
                         onPressed: () {
-                          Navigator.of(context).pop();
+                          Navigator.of(context).pop('Просмотрено');
                         },
                         icon: Icon(Icons.keyboard_arrow_down),
                       ),
@@ -97,7 +97,7 @@ class VideoPage extends StatelessWidget {
                             children: [
                               Container(
                                 child: Text(
-                                  "$_views views",
+                                  "$_views просмотров",
                                   style: BottomInfoStyle,
                                 ),
                               ),
@@ -171,7 +171,7 @@ class VideoPage extends StatelessWidget {
                             thickness: 0,
                             height: 3,
                           ),
-                          Text('Share'),
+                          Text('Поделиться'),
                         ],
                       ),
                     ),
@@ -184,7 +184,7 @@ class VideoPage extends StatelessWidget {
                             thickness: 0,
                             height: 3,
                           ),
-                          Text('Save'),
+                          Text('Сохранить'),
                         ],
                       ),
                     ),

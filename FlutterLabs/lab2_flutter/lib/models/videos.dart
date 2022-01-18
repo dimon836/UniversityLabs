@@ -1,17 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../videos.dart';
+import '../utils/fetchVideos.dart';
 
 class Videos extends ChangeNotifier {
-  final List<Map> _videos = [];
+  late List<Map<String, dynamic>> _videos = [];
 
   void update() {
     _videos.clear();
-    getVideos().forEach((element) {
-      element['isLiked'] = 'null';
-      _videos.add(element);
+    getVideos().then((videos) {
+      _videos = videos.map((element) {
+        element['isLiked'] = 'null';
+        return element;
+      }).toList();
+      notifyListeners();
     });
-    notifyListeners();
   }
 
   List getAll() {

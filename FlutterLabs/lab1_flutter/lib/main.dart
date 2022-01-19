@@ -11,10 +11,15 @@ Function function() {
 }
 
 void main() {
-  CalculatorAddSqrt calculator = Calculator.factory(a: 21.0, b: 0.0, type:'sqrt') as CalculatorAddSqrt;
+  CalculatorAddSqrt calculator = CalculatorAddSqrt(a: 21.0, b: 1.0);
+  // Calculator calculator = CalculatorAddSqrt(a: 21.0, b: 1.0);
   print(calculator.division);
   print(calculator.mySqrt(25));
-  assert(calculator.b == 0, "Be attentive! You can't use divide method.");
+  assert(calculator.b != 0, "Be attentive! You can't use divide method.");
+
+  Application myApp1 = Application("Internet Browser");
+  Application myApp2 = Application("Internet Browser 2");
+  myApp2.about();
 
   String? something;
   something ??= 'qwerty';

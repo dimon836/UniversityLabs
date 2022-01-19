@@ -125,8 +125,8 @@ class _AppState extends State<App> {
             icon: const Icon(Icons.search),
             tooltip: 'Поиск',
             onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('В разработке')));
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(const SnackBar(content: Text('В разработке')));
             },
           ),
           IconButton(
@@ -177,14 +177,15 @@ class _AppState extends State<App> {
                           )),
                     ),
                     Container(
-                      margin: const  EdgeInsets.only(left: 5),
+                      margin: const EdgeInsets.only(left: 5),
                       child: ElevatedButton(
                         child: const Text('Просмотрено'),
                         onPressed: () {},
                       ),
                     ),
                     RainbowContainer(
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16)),
                       // margin: const EdgeInsets.only(left: 5),
                       child: ElevatedButton(
                         child: const Text('Heroes 3: HotA'),
@@ -292,14 +293,6 @@ class _AppState extends State<App> {
         ),
       ),
       endDrawerEnableOpenDragGesture: false,
-
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     // Add your onPressed code here!
-      //   },
-      //   child: const Icon(Icons.navigation),
-      //   backgroundColor: Colors.grey,
-      // ),
 
       body: _indexToPageMap.elementAt(_selectedIndex),
     );

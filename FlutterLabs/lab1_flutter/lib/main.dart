@@ -12,7 +12,6 @@ Function function() {
 
 void main() {
   CalculatorAddSqrt calculator = CalculatorAddSqrt(a: 21.0, b: 1.0);
-  // Calculator calculator = CalculatorAddSqrt(a: 21.0, b: 1.0);
   print(calculator.division);
   print(calculator.mySqrt(25));
   assert(calculator.b != 0, "Be attentive! You can't use divide method.");
@@ -38,11 +37,10 @@ void main() {
   };
 
   if (DateTime.now().month == DateTime.february && DateTime.now().day == 16) {
-    me['age'] = 21;
+    me['age']++;
   }
 
   Employee dima = Employee('Dima', "Apple");
-  dima.company = "Apple";
   dima.work();
 
   Set<int> blueColor = {10, 45, 255};

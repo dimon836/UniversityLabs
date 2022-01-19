@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import './models/videos.dart';
 
-import './pages/library_page.dart';
+import './pages/hota_resources_page.dart';
 import './pages/subscriptions_page.dart';
 import './pages/main_page.dart';
 
@@ -86,7 +86,6 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
       themeMode: isDarkTheme ? ThemeMode.dark : ThemeMode.light,
-      home: App(toggleTheme: toggleTheme),
     );
   }
 }
@@ -137,7 +136,7 @@ class _AppState extends State<App> {
         totalSubscribeClicks: _totalSubscribeCount,
         onClick: incrementTotalSubsCount
     ),
-    LibraryPage(),
+    Text('Не предусмотрено'),
   ];
 
   @override
@@ -244,10 +243,26 @@ class _AppState extends State<App> {
                     ),
                     RainbowContainer(
                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
-                      // margin: const EdgeInsets.only(left: 5),
+                      margin: const EdgeInsets.only(left: 5),
                       child: ElevatedButton(
                         child: const Text('Heroes 3: HotA'),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute<void>(builder: (BuildContext context) {
+                              return Scaffold(
+                                body: HotaResourcesPage(),
+                                appBar: AppBar(
+                                  leading: IconButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop('Просмотрено');
+                                    },
+                                    icon: Icon(Icons.arrow_back),
+                                  ),
+                                ),
+                              );
+                            }),
+                          );
+                      },
                       ),
                     ),
                     Container(
@@ -320,7 +335,7 @@ class _AppState extends State<App> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.white,
+        selectedItemColor: Colors.blue,
         onTap: _onItemTapped,
         showUnselectedLabels: true,
       ),

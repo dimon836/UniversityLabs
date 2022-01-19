@@ -54,7 +54,7 @@ class AnimatedBarChart extends AnimatedWidget {
       {Key? key, required Animation<double> animation, required this.data})
       : super(key: key, listenable: animation);
   static final _colorTween = ColorTween(
-    begin: Colors.blue,
+    begin: Colors.black,
     end: Colors.primaries[Random().nextInt(Colors.primaries.length)],
   );
 
@@ -87,14 +87,14 @@ class AnimatedBarChart extends AnimatedWidget {
   }
 }
 
-class LibraryPage extends StatefulWidget {
-  LibraryPage();
+class HotaResourcesPage extends StatefulWidget {
+  HotaResourcesPage();
 
   @override
-  State<StatefulWidget> createState() => _LibraryPageState();
+  State<StatefulWidget> createState() => _HotaResourcesPageState();
 }
 
-class _LibraryPageState extends State<LibraryPage>
+class _HotaResourcesPageState extends State<HotaResourcesPage>
     with SingleTickerProviderStateMixin {
   late Animation<double> animation;
   late AnimationController controller;
@@ -133,10 +133,13 @@ class _LibraryPageState extends State<LibraryPage>
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             AnimatedBarChart(animation: animation, data: {
-              "USA": 300,
-              "UK": 99,
-              "Ukraine": 250,
-              "Canada": 30
+              "Древесина": 50,
+              "Ртуть": 20,
+              "Руда": 50,
+              "Сера": 20,
+              "Самоцветы": 20,
+              "Кристалы": 20,
+              "Золото": 0,
             })
           ],
         ),

@@ -134,31 +134,65 @@ class VideoPage extends StatelessWidget {
                   children: [
                     TextButton(
                       onPressed: () {
-                        Provider.of<Videos>(context, listen: false).like(this.id);
+                        Provider.of<Videos>(context, listen: false)
+                            .like(this.id);
                       },
                       child: Column(
                         children: [
-                          Icon(_isLiked == 'liked' ? Icons.thumb_up : Icons.thumb_up_outlined),
+                          Icon(
+                            _isLiked == 'liked'
+                                ? Icons.thumb_up
+                                : Icons.thumb_up_outlined,
+                            color:
+                                Theme.of(context).brightness == Brightness.dark
+                                    ? Colors.white
+                                    : Colors.black,
+                          ),
                           Divider(
                             thickness: 0,
                             height: 3,
                           ),
-                          Text(NumberFormat.compact().format(_likes)),
+                          Text(
+                            NumberFormat.compact().format(_likes),
+                            style: TextStyle(
+                              color: Theme.of(context).brightness ==
+                                      Brightness.dark
+                                  ? Colors.white
+                                  : Colors.black,
+                            ),
+                          ),
                         ],
                       ),
                     ),
                     TextButton(
                       onPressed: () {
-                        Provider.of<Videos>(context, listen: false).dislike(this.id);
+                        Provider.of<Videos>(context, listen: false)
+                            .dislike(this.id);
                       },
                       child: Column(
                         children: [
-                          Icon(_isLiked == 'disliked' ? Icons.thumb_down : Icons.thumb_down_outlined),
+                          Icon(
+                            _isLiked == 'disliked'
+                                ? Icons.thumb_down
+                                : Icons.thumb_down_outlined,
+                            color:
+                                Theme.of(context).brightness == Brightness.dark
+                                    ? Colors.white
+                                    : Colors.black,
+                          ),
                           Divider(
                             thickness: 0,
                             height: 3,
                           ),
-                          Text(NumberFormat.compact().format(_dislikes)),
+                          Text(
+                            NumberFormat.compact().format(_dislikes),
+                            style: TextStyle(
+                              color: Theme.of(context).brightness ==
+                                      Brightness.dark
+                                  ? Colors.white
+                                  : Colors.black,
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -166,12 +200,26 @@ class VideoPage extends StatelessWidget {
                       onPressed: () {},
                       child: Column(
                         children: [
-                          Icon(Icons.send_outlined),
+                          Icon(
+                            Icons.send_outlined,
+                            color:
+                                Theme.of(context).brightness == Brightness.dark
+                                    ? Colors.white
+                                    : Colors.black,
+                          ),
                           Divider(
                             thickness: 0,
                             height: 3,
                           ),
-                          Text('Поделиться'),
+                          Text(
+                            'Поделиться',
+                            style: TextStyle(
+                              color: Theme.of(context).brightness ==
+                                      Brightness.dark
+                                  ? Colors.white
+                                  : Colors.black,
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -179,12 +227,26 @@ class VideoPage extends StatelessWidget {
                       onPressed: () {},
                       child: Column(
                         children: [
-                          Icon(Icons.playlist_add),
+                          Icon(
+                            Icons.playlist_add,
+                            color:
+                                Theme.of(context).brightness == Brightness.dark
+                                    ? Colors.white
+                                    : Colors.black,
+                          ),
                           Divider(
                             thickness: 0,
                             height: 3,
                           ),
-                          Text('Сохранить'),
+                          Text(
+                            'Сохранить',
+                            style: TextStyle(
+                              color: Theme.of(context).brightness ==
+                                      Brightness.dark
+                                  ? Colors.white
+                                  : Colors.black,
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -201,7 +263,7 @@ class VideoPage extends StatelessWidget {
                   children: [
                     // channel info
                     MaterialButton(
-                      onPressed: () {  },
+                      onPressed: () {},
                       child: Container(
                         margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
                         child: Row(
@@ -294,30 +356,34 @@ class VideoPage extends StatelessWidget {
                 height: 1,
               ),
               Container(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '${_specification}',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.white,
-                      ),
-                    ),
-                    InkWell(
-                      child: new Text(
-                        '    http://apeps.kpi.ua/',
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '${_specification}',
                         style: TextStyle(
                           fontSize: 12,
-                          color: Colors.blue,
+                          color: Theme.of(context).brightness == Brightness.dark
+                              ? Colors.white
+                              : Colors.black,
                         ),
                       ),
-                      onTap: () => launch('http://apeps.kpi.ua/')
-                    ),
-                  ],
+                      InkWell(
+                          child: new Text(
+                            'http://apeps.kpi.ua/',
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.blue,
+                            ),
+                          ),
+                          onTap: () => launch('http://apeps.kpi.ua/')),
+                    ],
                   ),
                 ),
+              ),
             ],
           ),
         ),
